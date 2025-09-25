@@ -21,11 +21,9 @@ const ViewCreator = () => {
 
       if (error) {
         console.error("Error fetching creator:", error);
-        setError("Failed to fetch creator. Please try again.");
       } else {
         setCreator(data);
       }
-      setLoading(false);
     };
     fetchCreator();
   }, [id]);
