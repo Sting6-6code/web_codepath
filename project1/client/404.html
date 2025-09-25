@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | Boss Battle Guide</title>
+    <meta
+      name="description"
+      content="The page you're looking for doesn't exist. Return to our Boss Battle Guide to find epic boss strategies."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <style>
+      .error-404 {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: white;
+        border-radius: 1rem;
+        margin: 2rem 0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .error-404 h1 {
+        font-size: 8rem;
+        font-weight: 900;
+        margin: 0;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .error-404 h2 {
+        font-size: 2rem;
+        margin: 1rem 0;
+        font-weight: 600;
+      }
+
+      .error-404 p {
+        font-size: 1.2rem;
+        margin: 1rem 0 2rem 0;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .btn-primary {
+        background: #6366f1;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary:hover {
+        background: #4f46e5;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        padding: 1rem 2rem;
+        border: 2px solid white;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary:hover {
+        background: white;
+        color: #6366f1;
+        transform: translateY(-2px);
+      }
+
+      .boss-suggestions {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .boss-suggestions h3 {
+        color: #1f2937;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .suggestion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .suggestion-item {
+        background: #f8fafc;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .suggestion-item:hover {
+        background: #6366f1;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+      }
+
+      .suggestion-item h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+      }
+
+      .suggestion-item p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 768px) {
+        .error-404 h1 {
+          font-size: 6rem;
+        }
+
+        .error-404 h2 {
+          font-size: 1.5rem;
+        }
+
+        .error-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+          max-width: 300px;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <div class="error-404">
+        <h1>404</h1>
+        <h2>Boss Not Found!</h2>
+        <p>
+          Looks like this boss has escaped from our database! The page you're
+          looking for doesn't exist, but don't worry - there are plenty of epic
+          bosses waiting for you to discover.
+        </p>
+
+        <div class="error-actions">
+          <a href="/" class="btn-primary"> 🏠 Return to Boss List </a>
+          <a href="javascript:history.back()" class="btn-secondary">
+            ← Go Back
+          </a>
+        </div>
+      </div>
+
+      <div class="boss-suggestions">
+        <h3>🎮 Popular Boss Encounters</h3>
+        <p>Check out these legendary bosses that might interest you:</p>
+
+        <div class="suggestion-grid">
+          <div
+            class="suggestion-item"
+            onclick="window.location.href='/bosses/crystalguardian'"
+          >
+            <h4>💎 Crystal Guardian</h4>
+            <p>Medium difficulty • Crystal Caverns</p>
+          </div>
+
+          <div
+            class="suggestion-item"
+            onclick="window.location.href='/bosses/mantislords'"
+          >
+            <h4>🦗 Mantis Lords</h4>
+            <p>Hard difficulty • Mantis Village</p>
+          </div>
+
+          <div
+            class="suggestion-item"
+            onclick="window.location.href='/bosses/flamedragón'"
+          >
+            <h4>🐉 Flame Dragon</h4>
+            <p>Very Hard • Volcano Peak</p>
+          </div>
+
+          <div
+            class="suggestion-item"
+            onclick="window.location.href='/bosses/icequeen'"
+          >
+            <h4>❄️ Ice Queen</h4>
+            <p>Hard difficulty • Frozen Palace</p>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <small>
+          <p>
+            Boss Guide Listicle by Siting Wang •
+            <a href="/" style="color: #6366f1">Return to Home</a>
+          </p>
+        </small>
+      </footer>
+    </main>
+
+    <script>
+      // 添加一些交互效果
+      document.addEventListener("DOMContentLoaded", function () {
+        // 为建议项添加点击效果
+        const suggestionItems = document.querySelectorAll(".suggestion-item");
+        suggestionItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            this.style.transform = "scale(0.95)";
+            setTimeout(() => {
+              this.style.transform = "";
+            }, 150);
+          });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            window.location.href = "/";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
