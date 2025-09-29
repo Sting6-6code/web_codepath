@@ -97,4 +97,4 @@ const bossesData = [
   },
 ];
 
-export default bossesData;
+export default bossesData ;
