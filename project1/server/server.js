@@ -1,4 +1,6 @@
 import express from "express";
+import dotenv from 'dotenv'
+dotenv.config({ path: '../.env' })
 import path from "path";
 import { fileURLToPath } from "url";
 import bossesRoutes from "./routes/bosses.js";
