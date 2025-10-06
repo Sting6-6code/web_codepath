@@ -1,26 +1,23 @@
-# WEB103 Project 1 - _Boss Battle Guide_
+# WEB103 Project 2 - _Boss Battle Guide_
 
 Submitted by: **Siting Wang**
 
-About this web app: **A comprehensive guide for video game boss battles, featuring detailed information about different bosses, their abilities, weaknesses, and strategies to defeat them.**
+About this web app: **A comprehensive guide for video game boss battles, featuring detailed information about different bosses, their abilities, weaknesses, and strategies to defeat them. Now with PostgreSQL database integration.**
 
-Time spent: **10** hours
+Time spent: **3** hours
 
 ## Required Features
 
 The following **required** functionality is completed:
 
 - [x] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
-- [x] **The web app displays a title**
-- [x] **The web app displays at least five unique list items, each with at least three displayed attributes (such as title, text, and image)**
-- [x] **The user can click on each item in the list to see a detailed view of it, including all database fields**
-  - [x] **Each detail view should be a unique endpoint, such as `localhost:3000/bosses/crystalguardian` and `localhost:3000/bosses/mantislords`**
-- [x] **The web app serves an appropriate 404 page when no matching route is defined**
-- [x] **The web app is styled using Picocss**
+- [x] **The web app is connected to a PostgreSQL database, with an appropriately structured database table for the list items**
+  - [x] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
+  - [x] **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
 
 The following **optional** features are implemented:
 
-- [x] The web app displays items in a unique format, such as cards rather than lists
+- [x] The user can search for items by a specific attribute
 
 The following **additional** features are implemented:
 
@@ -35,9 +32,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='bossbattleguide.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='bosses_table.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with Kap for macOS
+GIF created with Kap for macOS <mcreference link="https://getkap.co/" index="0">0</mcreference>
 
 
 
