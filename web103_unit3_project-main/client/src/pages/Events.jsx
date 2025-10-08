@@ -1,38 +1,92 @@
-import React, { useState, useEffect } from 'react'
-import Event from '../components/Event'
-import '../css/LocationEvents.css'
+import React, { useState, useEffect } from "react";
+import Event from "../components/Event";
+import EventsAPI from "../services/EventsAPI";
+import LocationAPI from "../services/LocationAPI";
+import "../css/LocationEvents.css";
 
 const Events = () => {
-    const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState("all");
 
-    useEffect(() => {
-        // 这里应该添加获取所有事件的逻辑
-        // 由于没有看到EventsAPI的实现，暂时留空
-        // 实际项目中应该替换为真实的API调用
-    }, [])
+  useEffect(() => {
+    // 获取所有地点
+    (async () => {
+      try {
+        const locationsData = await LocationAPI.getAllLocations();
+        setLocations(locationsData);
+      } catch (error) {
+        console.error("Error loading locations:", error);
+      }
+    })();
+  }, []);
 
-    return (
-        <div className='all-events'>
-            <header>
-                <h2>All Events</h2>
-            </header>
+  useEffect(() => {
+    // 根据选中的地点获取事件
+    (async () => {
+      try {
+        let eventsData;
+        if (selectedLocation === "all") {
+          eventsData = await EventsAPI.getAllEvents();
+        } else {
+          eventsData = await LocationAPI.getEventsByLocation(selectedLocation);
+        }
+        setEvents(eventsData);
+      } catch (error) {
+        console.error("Error loading events:", error);
+      }
+    })();
+  }, [selectedLocation]);
 
-            <main>
-                {
-                    events && events.length > 0 ? events.map((event, index) =>
-                        <Event
-                            key={event.id}
-                            id={event.id}
-                            title={event.title}
-                            date={event.date}
-                            time={event.time}
-                            image={event.image}
-                        />
-                    ) : <h2><i className="fa-regular fa-calendar-xmark fa-shake"></i> {'No events scheduled yet!'}</h2>
-                }
-            </main>
+  const handleLocationChange = (e) => {
+    setSelectedLocation(e.target.value);
+  };
+
+  return (
+    <div className="all-events">
+      <header>
+        <h2>All Events</h2>
+        <div className="filter-container">
+          <label htmlFor="location-filter">Filter by Location: </label>
+          <select
+            id="location-filter"
+            value={selectedLocation}
+            onChange={handleLocationChange}
+            className="location-select"
+          >
+            <option value="all">All Locations</option>
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {location.name}
+              </option>
+            ))}
+          </select>
         </div>
-    )
-}
+      </header>
 
-export default Events
+      <main>
+        {events && events.length > 0 ? (
+          events.map((event) => (
+            <Event
+              key={event.id}
+              id={event.id}
+              title={event.title}
+              date={event.date}
+              time={event.time}
+              image={event.image}
+            />
+          ))
+        ) : (
+          <h2>
+            <i className="fa-regular fa-calendar-xmark fa-shake"></i>{" "}
+            {selectedLocation === "all"
+              ? "No events scheduled yet!"
+              : "No events scheduled at this location yet!"}
+          </h2>
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default Events;

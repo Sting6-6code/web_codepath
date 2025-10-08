@@ -1,39 +1,118 @@
 .location-events {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: no-wrap;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: no-wrap;
 }
 
 .location-events header {
-    background-color: var(--main-color);
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 10px;
+  background-color: var(--main-color);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
 }
 
 .location-image img {
-    width: 300px;
-    height: auto;
-    border: 1px solid white;
-    margin-left: 20px;
+  width: 300px;
+  height: auto;
+  border: 1px solid white;
+  margin-left: 20px;
 }
 
 .location-events header p {
-    color: white;
-    font-size: 0.8em;
-    margin-bottom: 0px;
+  color: white;
+  font-size: 0.8em;
+  margin-bottom: 0px;
 }
 
 .location-events main {
-    text-align: center;
-    padding: 30px;
-    margin: 30px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  text-align: center;
+  padding: 30px;
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .location-events main i {
-    margin-right: 10px;
+  margin-right: 10px;
+}
+
+/* All Events Page Styles */
+.all-events {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: no-wrap;
+}
+
+.all-events header {
+  background-color: var(--main-color);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.all-events header h2 {
+  color: white;
+  margin: 0;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px 25px;
+  border-radius: 8px;
+}
+
+.filter-container label {
+  color: white;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.location-select {
+  padding: 8px 15px;
+  font-size: 1em;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: white;
+  color: var(--main-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.location-select:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.location-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.all-events main {
+  text-align: center;
+  padding: 30px;
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.all-events main h2 {
+  width: 100%;
+  color: var(--main-color);
+}
+
+.all-events main i {
+  margin-right: 10px;
 }

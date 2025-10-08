@@ -1,40 +1,76 @@
-import React, { useState, useEffect } from 'react'
-import Event from '../components/Event'
-import '../css/LocationEvents.css'
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Event from "../components/Event";
+import LocationAPI from "../services/LocationAPI";
+import "../css/LocationEvents.css";
 
-const LocationEvents = ({index}) => {
-    const [location, setLocation] = useState([])
-    const [events, setEvents] = useState([])
+// 路由路径到 location ID 的映射
+const ROUTE_TO_LOCATION_ID = {
+  "/echolounge": "arcane_atrium",
+  "/houseofblues": "silent_sanctuary",
+  "/pavilion": "golem_garage",
+  "/americanairlines": "desert_oasis",
+};
 
-    return (
-        <div className='location-events'>
-            <header>
-                <div className='location-image'>
-                    <img src={location.image} />
-                </div>
+const LocationEvents = () => {
+  const location = useLocation();
+  const id = ROUTE_TO_LOCATION_ID[location.pathname]; // 从路径获取 location ID
+  const [locationData, setLocation] = useState({});
+  const [events, setEvents] = useState([]);
 
-                <div className='location-info'>
-                    <h2>{location.name}</h2>
-                    <p>{location.address}, {location.city}, {location.state} {location.zip}</p>
-                </div>
-            </header>
+  useEffect(() => {
+    (async () => {
+      try {
+        // 获取 location 信息
+        const locationData = await LocationAPI.getLocationById(id);
+        setLocation(locationData);
 
-            <main>
-                {
-                    events && events.length > 0 ? events.map((event, index) =>
-                        <Event
-                            key={event.id}
-                            id={event.id}
-                            title={event.title}
-                            date={event.date}
-                            time={event.time}
-                            image={event.image}
-                        />
-                    ) : <h2><i className="fa-regular fa-calendar-xmark fa-shake"></i> {'No events scheduled at this location yet!'}</h2>
-                }
-            </main>
+        // 获取该 location 的 events
+        const eventsData = await LocationAPI.getEventsByLocation(id);
+        setEvents(eventsData);
+      } catch (error) {
+        console.error("Error loading location events:", error);
+      }
+    })();
+  }, [id]);
+
+  return (
+    <div className="location-events">
+      <header>
+        <div className="location-image">
+          <img src={locationData.image} alt={locationData.name} />
         </div>
-    )
-}
 
-export default LocationEvents
+        <div className="location-info">
+          <h2>{locationData.name}</h2>
+          <p>
+            {locationData.address}, {locationData.city}, {locationData.state}{" "}
+            {locationData.zip}
+          </p>
+        </div>
+      </header>
+
+      <main>
+        {events && events.length > 0 ? (
+          events.map((event) => (
+            <Event
+              key={event.id}
+              id={event.id}
+              title={event.name}
+              date={event.date}
+              time={event.time}
+              image={event.image}
+            />
+          ))
+        ) : (
+          <h2>
+            <i className="fa-regular fa-calendar-xmark fa-shake"></i>{" "}
+            {"No events scheduled at this location yet!"}
+          </h2>
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default LocationEvents;
