@@ -1,0 +1,122 @@
+==========================================
+PostgreSQL Connection Instructions
+==========================================
+
+METHOD 1: Direct Connection (EASIEST)
+--------------------------------------
+Copy and paste this ENTIRE command:
+
+psql "postgresql://drive_system_user:RigE3CTQAzxNtl7DjIbeTks95KDOncFf@dpg-d3s1s23e5dus738ilbkg-a.oregon-postgres.render.com:5432/drive_system?sslmode=require"
+
+
+METHOD 2: Interactive Prompts
+--------------------------------------
+When you run: /Library/PostgreSQL/17/scripts/runpsql.sh
+
+Enter ONLY these values at each prompt:
+
+Server [localhost]: 
+    dpg-d3s1s23e5dus738ilbkg-a.oregon-postgres.render.com
+
+Database [postgres]: 
+    drive_system
+
+Port [5432]: 
+    5432
+
+Username [postgres]: 
+    drive_system_user
+
+Password: 
+    RigE3CTQAzxNtl7DjIbeTks95KDOncFf
+
+
+SAMPLE SQL QUERIES (After Connected)
+--------------------------------------
+Once connected, run these commands:
+
+1. View all tables:
+   \dt
+
+2. View exteriors:
+   SELECT * FROM exteriors;
+
+3. View roofs:
+   SELECT * FROM roofs;
+
+4. View wheels:
+   SELECT * FROM wheels;
+
+5. View interiors:
+   SELECT * FROM interiors;
+
+6. View cars:
+   SELECT * FROM cars;
+
+7. View cars with full details:
+   SELECT 
+     c.id,
+     c.name,
+     e.color as exterior_color,
+     r.type as roof_type,
+     w.type as wheels_type,
+     i.material || ' - ' || i.color as interior,
+     c.total_price
+   FROM cars c
+   LEFT JOIN exteriors e ON c.exterior_id = e.id
+   LEFT JOIN roofs r ON c.roof_id = r.id
+   LEFT JOIN wheels w ON c.wheels_id = w.id
+   LEFT JOIN interiors i ON c.interior_id = i.id;
+
+8. Exit psql:
+   \q
+
+
+FOR README SCREENSHOTS
+--------------------------------------
+You need to capture:
+
+1. Render Dashboard showing database is active
+   - Go to: https://dashboard.render.com
+   - Navigate to your PostgreSQL database
+   - Screenshot the overview page
+
+2. Table contents using psql
+   - Connect using Method 1 above
+   - Run: SELECT * FROM exteriors;
+   - Run: SELECT * FROM roofs;
+   - Run: SELECT * FROM wheels;
+   - Run: SELECT * FROM interiors;
+   - Run: SELECT * FROM cars;
+   - Take screenshots of each result
+
+
+ALTERNATIVE: Use API Instead
+--------------------------------------
+If psql is not working, you can verify data via API:
+
+curl http://localhost:3000/api/exteriors
+curl http://localhost:3000/api/roofs
+curl http://localhost:3000/api/wheels
+curl http://localhost:3000/api/interiors
+curl http://localhost:3000/api/cars
+
+
+==========================================
+Common Errors & Solutions
+==========================================
+
+Error: "could not translate host name"
+  → You pasted the full connection string at the "Server" prompt
+  → Use Method 1 (direct connection) instead
+
+Error: "server does not support SSL"
+  → Make sure to include ?sslmode=require at the end
+  → Or check database.js has SSL config
+
+Error: "connection timeout"
+  → Check if Render database is active
+  → Verify credentials in .env file
+
+==========================================
+
